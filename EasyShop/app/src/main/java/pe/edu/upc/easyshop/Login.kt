@@ -6,9 +6,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -23,9 +25,10 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import pe.edu.upc.easyshop.ui.theme.EasyShopTheme
 
 @Composable
-fun Login() {
+fun Login(onLogin: () -> Unit) {
 
     val email = remember {
         mutableStateOf("")
@@ -69,8 +72,7 @@ fun Login() {
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp)
-            ,
+                .padding(8.dp),
             leadingIcon = {
                 Icon(
                     Icons.Default.Lock,
@@ -86,7 +88,14 @@ fun Login() {
                         isVisible.value = !isVisible.value
                     }
                 ) {
-                    Icon(Icons.Default.Done, contentDescription = null)
+                    Icon(
+                        if (isVisible.value) {
+                            Icons.Default.Visibility
+                        } else {
+                            Icons.Default.VisibilityOff
+                        },
+                        contentDescription = null
+                    )
                 }
             },
             visualTransformation =
@@ -98,11 +107,22 @@ fun Login() {
 
         )
 
+        Button(
+            onClick = onLogin,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        ) {
+            Text(text = "Login")
+        }
     }
 }
 
-@Preview
+@Preview()
 @Composable
 fun LoginPreview() {
-    Login()
+    EasyShopTheme(dynamicColor = false) {
+        Login {}
+    }
+
 }
