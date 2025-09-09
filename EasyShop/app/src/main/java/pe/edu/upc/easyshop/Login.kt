@@ -121,7 +121,7 @@ fun Login(onLogin: () -> Unit) {
 @Preview()
 @Composable
 fun LoginPreview() {
-    EasyShopTheme(dynamicColor = false) {
+    EasyShopTheme {
         Login {}
     }
 
