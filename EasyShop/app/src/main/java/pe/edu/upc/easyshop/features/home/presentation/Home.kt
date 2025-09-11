@@ -1,4 +1,4 @@
-package pe.edu.upc.easyshop
+package pe.edu.upc.easyshop.features.home.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -15,6 +15,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -43,7 +46,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import pe.edu.upc.easyshop.ui.theme.EasyShopTheme
+import pe.edu.upc.easyshop.R
+import pe.edu.upc.easyshop.core.ui.components.ProductCard
+import pe.edu.upc.easyshop.core.ui.components.RoundedIcon
+import pe.edu.upc.easyshop.core.ui.theme.EasyShopTheme
+import pe.edu.upc.easyshop.shared.models.products
 
 @Composable
 fun Home() {
@@ -158,7 +165,7 @@ fun Home() {
             }
         }
 
-        LazyRow {
+        LazyRow(modifier = Modifier.padding(vertical = 8.dp)) {
             items(categories) { category ->
                 FilterChip(
                     selected = category == selectedCategory.value,
@@ -218,25 +225,39 @@ fun Home() {
                 )
             }
         }
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(60.dp)
+                .padding(horizontal = 8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                "Products",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.weight(1f)
+            )
+            TextButton(onClick = {}) {
+                Text("See all")
+            }
+        }
+
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2)
+        ) {
+
+            items(products) { product ->
+                ProductCard(product)
+            }
+
+        }
+
+
     }
 }
 
-@Composable
-fun RoundedIcon(icon: ImageVector) {
-    Box(
-        modifier = Modifier
-            .size(48.dp)
-            .clip(RoundedCornerShape(12.dp))
-            .background(MaterialTheme.colorScheme.surfaceContainer),
-        contentAlignment = Alignment.Center
-    ) {
-        Icon(
-            icon,
-            contentDescription = null,
-            modifier = Modifier.size(24.dp)
-        )
-    }
-}
 
 sealed class Category(val label: String) {
     object All : Category("All")
