@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EasyShop</string>
+    <string name="label_hello">Hola</string>
+    <string name="label_greeting">Buenos días</string>
+    <string name="placeholder_search">Buscar</string>
+    <string name="label_categories">Categorías</string>
+    <string name="button_see_all">Mostrar todo</string>
+    <string name="category_all">Todo</string>
+    <string name="category_men">Hombre</string>
+    <string name="category_women">Mujer</string>
+    <string name="category_boys">Niño</string>
+    <string name="category_girls">Niña</string>
+    <string name="button_shop_now">Comprar ahora</string>
+    <string name="label_products">Productos</string>
+    <string name="tab_home">Inicio</string>
+    <string name="tab_favorite">Favorito</string>
+    <string name="tab_cart">Carrito</string>
+    <string name="tab_profile">Perfil</string>
+</resources>

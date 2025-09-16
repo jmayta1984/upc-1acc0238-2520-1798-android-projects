@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">EasyShop</string>
+    <string name="label_hello">Hello</string>
+    <string name="label_greeting">Good morning</string>
+    <string name="placeholder_search">Search</string>
+    <string name="label_categories">Categories</string>
+    <string name="button_see_all">See all</string>
+    <string name="category_all">All</string>
+    <string name="category_men">Men</string>
+    <string name="category_women">Women</string>
+    <string name="category_boys">Boys</string>
+    <string name="category_girls">Girls</string>
+    <string name="button_shop_now">Shop now</string>
+    <string name="label_products">Products</string>
+    <string name="tab_home">Home</string>
+    <string name="tab_favorite">Favorite</string>
+    <string name="tab_cart">Cart</string>
+    <string name="tab_profile">Profile</string>
+
 </resources>

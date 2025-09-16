@@ -40,9 +40,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -53,7 +53,7 @@ import pe.edu.upc.easyshop.core.ui.theme.EasyShopTheme
 import pe.edu.upc.easyshop.shared.models.products
 
 @Composable
-fun Home() {
+fun Home(onClick: () -> Unit) {
 
     val search = remember {
         mutableStateOf("")
@@ -102,12 +102,12 @@ fun Home() {
 
             ) {
                 Text(
-                    "Hello Alex",
+                    "${stringResource(R.string.label_hello)} Alex",
                     style = MaterialTheme.typography.labelMedium,
                     color = MaterialTheme.colorScheme.outline
                 )
                 Text(
-                    "Good morning",
+                    stringResource(R.string.label_greeting),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold
                 )
@@ -137,7 +137,7 @@ fun Home() {
                     )
                 },
                 placeholder = {
-                    Text("Search")
+                    Text(stringResource(R.string.placeholder_search))
                 },
                 modifier = Modifier.weight(1f)
 
@@ -155,17 +155,17 @@ fun Home() {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                "Categories",
+                stringResource(R.string.label_categories),
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.weight(1f)
             )
             TextButton(onClick = {}) {
-                Text("See all")
+                Text(stringResource(R.string.button_see_all))
             }
         }
 
-        LazyRow(modifier = Modifier.padding(vertical = 8.dp)) {
+        LazyRow(modifier = Modifier.padding(bottom = 8.dp)) {
             items(categories) { category ->
                 FilterChip(
                     selected = category == selectedCategory.value,
@@ -212,7 +212,7 @@ fun Home() {
                         color = MaterialTheme.colorScheme.onPrimary
                     )
                     ElevatedButton(onClick = {}) {
-                        Text("Shop now")
+                        Text(stringResource(R.string.button_shop_now))
                     }
                 }
                 Image(
@@ -234,13 +234,13 @@ fun Home() {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                "Products",
+                stringResource(R.string.label_products),
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold,
                 modifier = Modifier.weight(1f)
             )
             TextButton(onClick = {}) {
-                Text("See all")
+                Text(stringResource(R.string.button_see_all))
             }
         }
 
@@ -249,7 +249,7 @@ fun Home() {
         ) {
 
             items(products) { product ->
-                ProductCard(product)
+                ProductCard(product, onClick)
             }
 
         }
@@ -271,6 +271,6 @@ sealed class Category(val label: String) {
 @Composable
 fun HomePreview() {
     EasyShopTheme {
-        Home()
+        Home{}
     }
 }
