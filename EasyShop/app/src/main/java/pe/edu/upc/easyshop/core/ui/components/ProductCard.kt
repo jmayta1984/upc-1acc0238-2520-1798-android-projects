@@ -2,16 +2,13 @@ package pe.edu.upc.easyshop.core.ui.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
@@ -30,11 +27,12 @@ import pe.edu.upc.easyshop.shared.models.Product
 import pe.edu.upc.easyshop.shared.models.products
 
 @Composable
-fun ProductCard(product: Product) {
+fun ProductCard(product: Product, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .height(192.dp)
-            .padding(8.dp)
+            .padding(8.dp),
+        onClick = onClick
     ) {
         Column(
             modifier = Modifier.padding(8.dp),
@@ -75,7 +73,7 @@ fun ProductCartPreview() {
     ) {
 
         items(products) { product ->
-            ProductCard(product)
+            ProductCard(product) {}
         }
 
     }
