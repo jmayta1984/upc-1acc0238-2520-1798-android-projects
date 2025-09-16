@@ -1,4 +1,4 @@
-package pe.edu.upc.easyshop.core
+package pe.edu.upc.easyshop.core.root
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -22,7 +22,7 @@ import pe.edu.upc.easyshop.core.ui.theme.EasyShopTheme
 import pe.edu.upc.easyshop.features.home.presentation.Home
 
 @Composable
-fun Main() {
+fun Main(onClick: () -> Unit) {
     val selectedIndex = remember {
         mutableIntStateOf(0)
     }
@@ -57,7 +57,7 @@ fun Main() {
 
     ) {
         Column(modifier = Modifier.padding(it)) {
-            Home()
+            Home(onClick)
         }
 
     }
@@ -69,7 +69,7 @@ data class NavigationItem(val icon: ImageVector, val label: String)
 @Preview
 @Composable
 fun MainPreview() {
-    EasyShopTheme(dynamicColor = false) {
-        Main()
+    EasyShopTheme {
+        Main{}
     }
 }
