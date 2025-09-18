@@ -1,4 +1,4 @@
-package pe.edu.upc.easyshop.features.home.presentation
+package pe.edu.upc.easyshop.features.home.presentation.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -34,6 +34,8 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -50,10 +52,13 @@ import pe.edu.upc.easyshop.R
 import pe.edu.upc.easyshop.core.ui.components.ProductCard
 import pe.edu.upc.easyshop.core.ui.components.RoundedIcon
 import pe.edu.upc.easyshop.core.ui.theme.EasyShopTheme
-import pe.edu.upc.easyshop.shared.models.products
+import pe.edu.upc.easyshop.features.home.presentation.di.PresentationModule.getHomeViewModel
+import pe.edu.upc.easyshop.features.home.presentation.viewmodels.HomeViewModel
 
 @Composable
-fun Home(onClick: () -> Unit) {
+fun Home(
+    viewModel: HomeViewModel,
+    onClick: () -> Unit) {
 
     val search = remember {
         mutableStateOf("")
@@ -62,6 +67,8 @@ fun Home(onClick: () -> Unit) {
     val selectedCategory = remember {
         mutableStateOf<Category>(Category.All)
     }
+
+    val products by viewModel.products.collectAsState()
 
     val categories = listOf(
         Category.All,
@@ -271,6 +278,6 @@ sealed class Category(val label: String) {
 @Composable
 fun HomePreview() {
     EasyShopTheme {
-        Home{}
+        Home(getHomeViewModel()){}
     }
 }
