@@ -1,0 +1,25 @@
+package pe.edu.upc.easyshop.features.home.data.local.dao
+
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy.Companion.REPLACE
+import androidx.room.Query
+import androidx.room.Update
+import pe.edu.upc.easyshop.features.home.data.local.models.ProductEntity
+
+@Dao
+interface ProductDao {
+    @Insert(onConflict = REPLACE)
+    suspend fun insert(entity: ProductEntity)
+
+    @Update
+    suspend fun update(entity: ProductEntity)
+
+    @Delete
+    suspend fun delete(entity: ProductEntity)
+
+    @Query("select * from products")
+    suspend fun fetchAll(): List<ProductEntity>
+
+}
