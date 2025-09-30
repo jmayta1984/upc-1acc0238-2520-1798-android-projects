@@ -34,7 +34,8 @@ class ProductRepositoryImpl(
                         Product(
                             name = productDto.title ?: "",
                             price = productDto.price ?: 0.0,
-                            image = productDto.thumbnail ?: ""
+                            image = productDto.thumbnail ?: "",
+                            id = productDto.id ?: 0
                         )
 
                     }
@@ -46,4 +47,24 @@ class ProductRepositoryImpl(
 
         return@withContext emptyList()
     }
+
+    override suspend fun getProductById(id: Int): Product? = withContext(Dispatchers.IO){
+
+        val response = service.getProductById(id)
+
+        if (response.isSuccessful) {
+            response.body()?.let { productDto ->
+                return@withContext Product (
+                    id = productDto.id ?: 0,
+                    name = productDto.title ?: "",
+                    price = productDto.price ?: 0.0,
+                    image = productDto.thumbnail ?: ""
+                )
+            }
+        }
+
+        return@withContext null
+    }
+
+
 }

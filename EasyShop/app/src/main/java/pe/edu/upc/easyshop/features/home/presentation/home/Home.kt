@@ -1,4 +1,4 @@
-package pe.edu.upc.easyshop.features.home.presentation.views
+package pe.edu.upc.easyshop.features.home.presentation.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -53,12 +53,11 @@ import pe.edu.upc.easyshop.core.ui.components.ProductCard
 import pe.edu.upc.easyshop.core.ui.components.RoundedIcon
 import pe.edu.upc.easyshop.core.ui.theme.EasyShopTheme
 import pe.edu.upc.easyshop.features.home.presentation.di.PresentationModule.getHomeViewModel
-import pe.edu.upc.easyshop.features.home.presentation.viewmodels.HomeViewModel
 
 @Composable
 fun Home(
     viewModel: HomeViewModel,
-    onClick: () -> Unit) {
+    onClick: (Int) -> Unit) {
 
     val search = remember {
         mutableStateOf("")
@@ -256,7 +255,9 @@ fun Home(
         ) {
 
             items(products) { product ->
-                ProductCard(product, onClick)
+                ProductCard(product) {
+                    onClick(product.id)
+                }
             }
 
         }
