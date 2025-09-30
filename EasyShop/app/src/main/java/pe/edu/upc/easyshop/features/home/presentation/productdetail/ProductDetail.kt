@@ -69,7 +69,9 @@ fun ProductDetail(viewModel: ProductDetailViewModel) {
                             .background(MaterialTheme.colorScheme.onPrimary),
                         contentScale = ContentScale.FillHeight
                     )
-                    IconButton(onClick = {}) {
+                    IconButton(onClick = {
+                        viewModel.toggleFavorite()
+                    }) {
                         Icon(
                             Icons.Default.FavoriteBorder,
                             contentDescription = null

@@ -20,16 +20,6 @@ class ProductRepositoryImpl(
             response.body()?.let { productsWrapperDto ->
                 productsWrapperDto.products?.let { productsDto ->
 
-                    productsDto.forEach { productDto ->
-                        dao.insert(
-                            ProductEntity(
-                                id = productDto.id ?: 0,
-                                name = productDto.title ?: "",
-                                price = productDto.price ?: 0.0,
-                                image = productDto.thumbnail ?: ""
-                            )
-                        )
-                    }
                     return@withContext productsDto.map { productDto ->
                         Product(
                             name = productDto.title ?: "",
@@ -48,13 +38,13 @@ class ProductRepositoryImpl(
         return@withContext emptyList()
     }
 
-    override suspend fun getProductById(id: Int): Product? = withContext(Dispatchers.IO){
+    override suspend fun getProductById(id: Int): Product? = withContext(Dispatchers.IO) {
 
         val response = service.getProductById(id)
 
         if (response.isSuccessful) {
             response.body()?.let { productDto ->
-                return@withContext Product (
+                return@withContext Product(
                     id = productDto.id ?: 0,
                     name = productDto.title ?: "",
                     price = productDto.price ?: 0.0,
@@ -64,6 +54,15 @@ class ProductRepositoryImpl(
         }
 
         return@withContext null
+    }
+
+    override suspend fun addFavorite(product: Product) = withContext(Dispatchers.IO) {
+        dao.insert(ProductEntity (
+            id = product.id,
+            name = product.name,
+            price = product.price,
+            image = product.image
+        ))
     }
 
 

@@ -10,11 +10,8 @@ import pe.edu.upc.easyshop.features.home.data.local.models.ProductEntity
 
 @Dao
 interface ProductDao {
-    @Insert(onConflict = REPLACE)
+    @Insert
     suspend fun insert(entity: ProductEntity)
-
-    @Update
-    suspend fun update(entity: ProductEntity)
 
     @Delete
     suspend fun delete(entity: ProductEntity)

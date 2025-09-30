@@ -17,4 +17,13 @@ class ProductDetailViewModel(private val repository: ProductRepository) : ViewMo
             _product.value = repository.getProductById(id)
         }
     }
+
+    fun toggleFavorite() {
+        _product.value?.let { product ->
+            viewModelScope.launch {
+                repository.addFavorite(product)
+            }
+        }
+
+    }
 }
