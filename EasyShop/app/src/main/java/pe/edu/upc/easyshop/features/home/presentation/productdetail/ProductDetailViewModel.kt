@@ -21,7 +21,14 @@ class ProductDetailViewModel(private val repository: ProductRepository) : ViewMo
     fun toggleFavorite() {
         _product.value?.let { product ->
             viewModelScope.launch {
-                repository.addFavorite(product)
+                if (product.isFavorite) {
+                    repository.removeFavorite(product)
+                } else {
+                    repository.addFavorite(product)
+                }
+                _product.value = product.copy(
+                    isFavorite = !product.isFavorite
+                )
             }
         }
 

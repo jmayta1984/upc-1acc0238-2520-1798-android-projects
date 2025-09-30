@@ -59,7 +59,7 @@ fun ProductDetail(viewModel: ProductDetailViewModel) {
 
         ) { paddingValues ->
             Column(modifier = Modifier.padding(paddingValues)) {
-                Box (contentAlignment = Alignment.TopEnd) {
+                Box(contentAlignment = Alignment.TopEnd) {
                     AsyncImage(
                         product.image,
                         contentDescription = null,
@@ -73,7 +73,11 @@ fun ProductDetail(viewModel: ProductDetailViewModel) {
                         viewModel.toggleFavorite()
                     }) {
                         Icon(
-                            Icons.Default.FavoriteBorder,
+                            if (product.isFavorite) {
+                                Icons.Default.Favorite
+                            } else {
+                                Icons.Default.FavoriteBorder
+                            },
                             contentDescription = null
                         )
                     }

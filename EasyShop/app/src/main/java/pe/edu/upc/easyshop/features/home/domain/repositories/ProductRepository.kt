@@ -9,4 +9,6 @@ interface ProductRepository {
     suspend fun getProductById(id: Int): Product?
 
     suspend fun addFavorite(product: Product)
+
+    suspend fun removeFavorite(product: Product)
 }
