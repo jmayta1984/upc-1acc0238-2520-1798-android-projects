@@ -1,4 +1,4 @@
-package pe.edu.upc.easymovie.features.movies.data.local.models
+package pe.edu.upc.easymovie.features.movies.data.remote.models
 
 import com.google.gson.annotations.SerializedName
 
