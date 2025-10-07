@@ -17,7 +17,9 @@ class MovieRepositoryImpl @Inject constructor(private val service: MovieService)
                     Movie(
                         id = movieDto.id,
                         title = movieDto.title,
-                        image = "https://image.tmdb.org/t/p/w500/${movieDto.posterPath ?: ""}"
+                        image = "https://image.tmdb.org/t/p/w500/${movieDto.posterPath ?: ""}",
+                        overview = movieDto.overview
+
                     )
                 }
 

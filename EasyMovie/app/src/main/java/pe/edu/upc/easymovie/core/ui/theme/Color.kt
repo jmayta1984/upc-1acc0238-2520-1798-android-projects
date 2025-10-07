@@ -1,4 +1,4 @@
-package pe.edu.upc.easymovie.ui.theme
+package pe.edu.upc.easymovie.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
